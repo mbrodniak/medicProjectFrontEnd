@@ -1,0 +1,12 @@
+h1{
+  text-align: center;
+}
+div.container{
+  height: 520px;
+  width: 600px;
+  background-color: white;
+  border: 2px solid black;
+}
+div.row{
+  padding: 10px;
+}

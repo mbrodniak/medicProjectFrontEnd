@@ -1,0 +1,36 @@
+<div class="container">
+  <p *ngFor="let d of hours">
+    {{d}}
+  </p>
+  <div class="row">
+    <div class="col-md-2">
+      <input [(ngModel)]="date" class="form-control" type="date" id="date" dataformatas="dd-mm-yyyy" >
+    </div>
+    <div class="col-md-1">
+      <button  class="btn btn-primary" (click)="changeDate()">Zmien date</button>
+    </div>
+      <div class="col">
+          <div class="col">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Wolne terminy w dniu: {{day | date: 'yyyy-MM-dd'}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <div *ngFor="let hour of workingHours">
+              <tr *ngIf="!hours.includes(hour)">
+                <td>
+                  {{hour}}
+                </td>
+                <button class="btn btn-primary" (click)="makeAnAppointment(hour)">Rezerwuj</button>
+              </tr>
+              </div>
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,60 @@
+<!--<br>-->
+<div class="container">
+  <br>
+  <div class="jumbotron" style="text-align: center">
+    <h2>
+      Log in
+    </h2>
+    <hr>
+  </div>
+  <form role="form" (submit)="login()">
+  <div class="row">
+    <div class="col">E-mail
+      <input class="form-control" type="text" [(ngModel)]="credentials.email" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="col">Password
+      <input class="form-control" type="password" [(ngModel)]="credentials.password" [ngModelOptions]="{standalone: true}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-success btn-block">Sign In</button>
+    </div>
+  </div>
+  </form>
+  <a href="/register">Rejestracja</a>
+</div>
+  <!--<div class="row">-->
+    <!--<ul>-->
+      <!--<li>-->
+        <!--<a href="/register">Create account!</a>-->
+      <!--</li>-->
+      <!--<li><div class="container">-->
+        <!--<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>-->
+          <!--<div [ngClass]="{ 'has-error': f.submitted && !username.valid }">-->
+            <!--&lt;!&ndash;<label for="userName">Username</label>&ndash;&gt;-->
+            <!--<input type="text"-->
+                   <!--name="username" [(ngModel)]="model.username"-->
+                   <!--#username="ngModel" required />-->
+            <!--<div *ngIf="f.submitted-->
+            <!--&& !username.valid">Username is required</div>-->
+          <!--</div>-->
+          <!--<div [ngClass]="{ 'has-error': f.submitted && !password.valid }">-->
+            <!--&lt;!&ndash;<label for="password">Password</label>&ndash;&gt;-->
+            <!--<input type="password"-->
+                   <!--name="password" [(ngModel)]="model.password"-->
+                   <!--#password="ngModel" required />-->
+            <!--<div *ngIf="f.submitted-->
+            <!--&& !password.valid">Password is required</div>-->
+          <!--</div>-->
+          <!--<div>-->
+            <!--<button [disabled]="loading">Login</button>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+        <!--<a href="/asd">Forgot my password :( </a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</div>-->
+

@@ -1,0 +1,52 @@
+<!--<div *ngIf="">-->
+<div class="container">
+  <div class="row">First name
+    <input [(ngModel)]="patient.firstName" type="text" class="form-control">
+  </div>
+  <div class="row">Last name
+    <input [(ngModel)]="patient.lastName" type="text" class="form-control">
+  </div>
+  <div class="row">Birth date
+    <input [(ngModel)]="patient.birthDate" type="date" class="form-control" id="today" dataformatas="dd-mm-yyyy">
+  </div>
+  <div class="row">E-mail
+      <input [(ngModel)]="patient.email" type="email" class="form-control">
+  </div>
+  <div class="row">Password
+      <input [(ngModel)]="patient.password" type="password" class="form-control">
+  </div>
+  <div class="row">
+    <input type="file" id="file" (change)="fileInput($event)">
+  </div>
+  <br>
+  <div class="row">
+      <button class="btn btn-primary btn-block" (click)="send()">Send</button>
+  </div>
+<!--</div>-->
+<!--<div class="container">-->
+  <!--<div class="row">First name-->
+    <!--<input [(ngModel)]="user.login" type="text" class="form-control">-->
+  <!--</div>-->
+  <!--<div class="row">Last name-->
+    <!--<input [(ngModel)]="user.password" type="text" class="form-control">-->
+  <!--</div>-->
+  <!--<div class="row">Birth date-->
+    <!--<input [(ngModel)]="user.email" type="text" class="form-control">-->
+  <!--</div>-->
+  <!--<div class="row">E-mail-->
+    <!--<input [(ngModel)]="user.name" type="text" class="form-control">-->
+  <!--</div>-->
+  <!--<div class="row">Password-->
+    <!--<input [(ngModel)]="user.vorname" type="text" class="form-control">-->
+  <!--</div>-->
+  <!--<br>-->
+  <!--<div class="row">-->
+    <!--<button class="btn btn-primary btn-block" (click)="send()">Send</button>-->
+  <!--</div>-->
+<!--</div>-->
+<script type="text/javascript">
+  function changeDate(){
+    document.getElementById('today').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+  }
+</script>
+<!--</div>-->

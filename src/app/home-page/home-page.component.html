@@ -1,0 +1,15 @@
+<app-main-navbar></app-main-navbar>
+<div class="container">
+  <div class="jumbotron">
+    <h2>
+      Medic Center
+    </h2><hr>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <h1 *ngIf="id != null">Id: {{id}}</h1>
+    <button class="btn btn-primary" (click)="getCrendetials()">GetCredentials</button>
+    <button class="btn btn-primary" (click)="getId()">GetId</button>
+    <p><a [routerLink]="['/login']" (click) ="logout()">Logout</a></p>
+  </div>
+</div>
+
