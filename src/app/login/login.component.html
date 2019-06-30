@@ -3,26 +3,38 @@
   <br>
   <div class="jumbotron" style="text-align: center">
     <h2>
-      Log in
+      <b>
+        Log in
+      </b>
     </h2>
     <hr>
+    <p><b style="color: red">{{message}}</b></p>
   </div>
   <form role="form" (submit)="login()">
   <div class="row">
     <div class="col">E-mail
       <input class="form-control" type="text" [(ngModel)]="credentials.email" [ngModelOptions]="{standalone: true}">
     </div>
-    <div class="col">Password
+    <div class="col">Haslo
       <input class="form-control" type="password" [(ngModel)]="credentials.password" [ngModelOptions]="{standalone: true}">
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <button class="btn btn-outline-success btn-block">Sign In</button>
+      <button class="btn btn-success btn-block">Zaloguj</button>
+      <!--<button type="button" class="btn btn-outline-primary btn-block" (click)="navigateToEmployerLoginPage()">Pracownik</button>-->
     </div>
   </div>
   </form>
-  <a href="/register">Rejestracja</a>
+  <div class="row">
+    <div class="col">
+
+    </div>
+  </div>
+
+    <!--</div>-->
+  <!--</div>-->
+  <a href="/register">Nie masz konta? Zarejestruj się!</a>
 </div>
   <!--<div class="row">-->
     <!--<ul>-->

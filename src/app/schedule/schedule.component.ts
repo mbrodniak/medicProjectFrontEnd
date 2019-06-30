@@ -17,6 +17,7 @@ export class ScheduleComponent implements OnInit, OnChanges, DoCheck {
   day: string;
   date: Date = new Date();
   hours: Array<string> = new Array<string>();
+  id: string;
   workingHours = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
     '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'];
   constructor(private httpService: HttpService, private route: ActivatedRoute,
@@ -67,7 +68,8 @@ export class ScheduleComponent implements OnInit, OnChanges, DoCheck {
       this.date = new Date(this.day);
     }
     this.date = new Date(this.date);
-    this.doctorDetail.makeAnAppointment(this.date, hour, 1);
+    // this.httpService.currentMessage.subscribe(data => this.id = data);
+    this.doctorDetail.makeAnAppointment(this.date, hour, 13);
   }
   changeDate() {
     console.log('ta data: ' + this.date);

@@ -1,28 +1,29 @@
 <!--<div *ngIf="">-->
+<br>
 <div class="container">
-  <div class="row">First name
-    <input [(ngModel)]="patient.firstName" type="text" class="form-control">
-  </div>
-  <div class="row">Last name
-    <input [(ngModel)]="patient.lastName" type="text" class="form-control">
-  </div>
-  <div class="row">Birth date
-    <input [(ngModel)]="patient.birthDate" type="date" class="form-control" id="today" dataformatas="dd-mm-yyyy">
-  </div>
-  <div class="row">E-mail
-      <input [(ngModel)]="patient.email" type="email" class="form-control">
-  </div>
-  <div class="row">Password
-      <input [(ngModel)]="patient.password" type="password" class="form-control">
-  </div>
-  <div class="row">
-    <input type="file" id="file" (change)="fileInput($event)">
-  </div>
-  <br>
-  <div class="row">
-      <button class="btn btn-primary btn-block" (click)="send()">Send</button>
-  </div>
-<!--</div>-->
+  <form role="form" (submit)="register()">
+    <div class="row">Imie
+      <input [(ngModel)]="patient.firstName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">Nazwisko
+      <input [(ngModel)]="patient.lastName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">Data urodzenia
+      <input [(ngModel)]="patient.birthDate" type="date" class="form-control" id="today" dataformatas="dd-mm-yyyy" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">E-mail
+        <input [(ngModel)]="patient.email" type="email" class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">Haslo
+        <input [(ngModel)]="patient.password" type="password" class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">
+      <input type="file" id="file" (change)="fileInput($event)">
+    </div>
+    <br>
+    <button class="btn btn-success">Zarejestruj</button>
+  </form>
+</div>
 <!--<div class="container">-->
   <!--<div class="row">First name-->
     <!--<input [(ngModel)]="user.login" type="text" class="form-control">-->

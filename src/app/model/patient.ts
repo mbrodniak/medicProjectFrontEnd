@@ -6,5 +6,7 @@ export class Patient {
   lastName: string;
   birthDate: Date;
   ability: boolean;
+  email: string;
+  password: string;
 
 }

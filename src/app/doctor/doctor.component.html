@@ -4,7 +4,7 @@
     <table class="table">
       <thead class="thead-dark">
       <tr>
-        <th>Nr</th>
+        <!--<th>Nr</th>-->
         <th>Imie</th>
         <th>Nazwisko</th>
         <th>Specjalizacja</th>
@@ -13,7 +13,7 @@
       </thead>
       <tbody *ngFor="let doctor of doctorList">
         <tr>
-          <th>{{doctor.doctorId}}</th>
+          <!--<th>{{doctor.doctorId}}</th>-->
           <th>{{doctor.firstName}}</th>
           <th>{{doctor.lastName}}</th>
           <th>{{doctor.specialisation}}</th>
@@ -21,6 +21,6 @@
         </tr>
       </tbody>
     </table>
-
+  <p>User: {{user.username}}</p>
   </div>
 </body>

@@ -3,6 +3,7 @@ import {Doctor} from '../model/doctor';
 import {HttpClient} from '@angular/common/http';
 import {HttpService} from '../service/http.service';
 import {Router} from '@angular/router';
+import {User} from '../model/user';
 
 @Component({
   selector: 'app-doctor',
@@ -13,9 +14,12 @@ export class DoctorComponent implements OnInit {
 
   doctorList: Array<Doctor> = [];
   doctorDetail: Doctor;
+  user: User;
 
   constructor(private doctor: Doctor, private httpClient: HttpClient, private httpService: HttpService,
-              private router: Router) { }
+              private router: Router) {
+    this.httpService.currentMessage.subscribe(user => console.log(typeof user));
+  }
 
   ngOnInit() {
     this.httpService.getAllDoctors().subscribe(data =>

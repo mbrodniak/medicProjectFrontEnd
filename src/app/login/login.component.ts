@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   userId: Array<string> = [];
   credentials = {email: '', password: ''};
+  message: string;
   constructor(private route: ActivatedRoute,
               private router: Router,
               private httpClient: HttpClient,
@@ -27,12 +28,22 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.service.login(this.credentials.email, this.credentials.password).subscribe(data => {
-      console.log('Id in loginComponent: ' + data.id);
-      this.service.changeMessage(data.id.toString());
-    });
-    this.service.currentMessage.subscribe(data => this.userId.push(data));
-    console.log('This userID in logincmponent after subscribe: ' + this.userId.length);
-    this.router.navigate(['/home', 1]);
+      if (data['role'] === 'doctor') {
+        this.service.changeDoctorCredentials(data.id);
+        this.router.navigate(['doctorPage']);
+      } else if (data['role'] === 'employer') {
+        this.router.navigate(['employerPage']);
+      } else {
+        // this.service.changeMessage(data);
+        this.service.currentMessage.subscribe(message => this.userId.push(message.id.toString()));
+        console.log('This userID in logincmponent after subscribe: ' + this.userId.length);
+        this.router.navigate(['/home']);
+      }
+    },
+      error1 => this.message = 'Twoje konto nie zostało jeszcze aktywowane.');
+  }
+  navigateToEmployerLoginPage() {
+    this.router.navigate(['employerLogin']);
   }
 
 }

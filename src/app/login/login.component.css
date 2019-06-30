@@ -10,3 +10,6 @@ div.container{
 div.row{
   padding: 10px;
 }
+select{
+  height: 20px;
+}

@@ -1,15 +1,64 @@
 <app-main-navbar></app-main-navbar>
 <div class="container">
-  <div class="jumbotron">
-    <h2>
-      Medic Center
-    </h2><hr>
+    <div class="jumbotron">
+      <h1>
+        <b>
+        Medic Center
+        </b>
+      </h1>
+      <hr>
+      <p><b>Witaj {{user.username}}</b></p>
+    </div>
+    <!--<div class="row">-->
+      <!--<div class="col-md-6 col-md-offset-3">-->
+        <!--<h1 *ngIf="id != null">Id: {{id}}</h1>-->
+        <!--<button class="btn btn-primary" (click)="getCrendetials()">GetCredentials</button>-->
+        <!--<button class="btn btn-primary" (click)="getId()">GetId</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <div class="container">
+    <div class="alert alert-info">
+      <h2><b>Aktualnosci</b></h2>
+      <hr>
+      <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+
   </div>
-  <div class="col-md-6 col-md-offset-3">
-    <h1 *ngIf="id != null">Id: {{id}}</h1>
-    <button class="btn btn-primary" (click)="getCrendetials()">GetCredentials</button>
-    <button class="btn btn-primary" (click)="getId()">GetId</button>
-    <p><a [routerLink]="['/login']" (click) ="logout()">Logout</a></p>
+  <div class="container">
+    <div class="row">
+    <div appDoctorsSpec class="col">
+      <form  role="form" name="selectSpec" (submit)="findBySpec()">
+        <p style="text-align: center"><b>Znajdz lekarza po specjalizacji</b></p>
+        <div class="form-inline">
+          <div class="form-group col-md-6">
+            <select [(ngModel)]="doctorSpec" [ngModelOptions]="{standalone: true}" class="custom-select custom-select-lg">
+              <option value="" selected></option>
+              <option value="dentysta">Dentysta</option>
+              <option value="pediatra">Pediatra</option>
+            </select>
+          </div>
+            <div class="form-group col-md-6">
+              <button class="btn btn-primary btn-block">Szukaj</button>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="doctors.length > 0">
+        <ul *ngFor="let doctor of doctors">
+          <li>{{doctor.lastName}}<button style="margin: 5px" type="button" class="btn btn-primary" (click)="showDoctor(doctor)">Pokaz</button></li>
+        </ul>
+      </div>
+    </div>
+      <div appDoctorsSpec class="col">
+        <p style="text-align: center"><b>Najblizsze wizyty</b></p>
+        <button class="btn btn-primary btn-block">Szukaj</button>
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="getToken()">Token</button>
+    <p><b>Session storage: {{storage}}</b></p>
   </div>
 </div>
 

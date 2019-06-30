@@ -18,6 +18,13 @@ import {Appointment} from './model/appointment';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { TransformDatePipe } from './pipes/transform-date.pipe';
 import {Token} from './model/token';
+import { DoctorsSpecDirective } from './directive/doctors-spec.directive';
+import { NewsWidgetDirective } from './directive/news-widget.directive';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { EmployerLoginComponent } from './employer-login/employer-login.component';
+import { DoctorLoginComponent } from './doctor-login/doctor-login.component';
+import { DoctorPageComponent } from './doctor-page/doctor-page.component';
+import { EmployerPageComponent } from './employer-page/employer-page.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +36,20 @@ import {Token} from './model/token';
     DoctorDetailComponent,
     MainNavbarComponent,
     ScheduleComponent,
-    TransformDatePipe
+    TransformDatePipe,
+    DoctorsSpecDirective,
+    NewsWidgetDirective,
+    EmployerLoginComponent,
+    DoctorLoginComponent,
+    DoctorPageComponent,
+    EmployerPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFontAwesomeModule
   ],
   providers: [Patient, User, Doctor, Appointment, Token],
   bootstrap: [AppComponent]

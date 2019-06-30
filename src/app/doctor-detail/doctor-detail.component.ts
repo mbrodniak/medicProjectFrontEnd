@@ -48,7 +48,7 @@ export class DoctorDetailComponent implements OnInit, OnChanges {
   }
 
   getPatientId() {
-    this.httpService.currentMessage.subscribe(data => this.patientId = data);
+    // this.httpService.currentMessage.subscribe(data => this.patientId = data);
   }
 
   makeAnAppointment(date: Date, hour: string, patientId: number) {

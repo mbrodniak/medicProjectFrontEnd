@@ -9,5 +9,6 @@ export class Appointment {
   doctor: Doctor;
   patientId: number;
   doctorId: string;
+  patient: Patient;
 
 }
