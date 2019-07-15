@@ -7,7 +7,7 @@
         </b>
       </h1>
       <hr>
-      <p><b>Witaj {{user.username}}</b></p>
+      <p><b>Witaj {{info.username}}</b></p>
     </div>
     <!--<div class="row">-->
       <!--<div class="col-md-6 col-md-offset-3">-->
@@ -29,36 +29,40 @@
 
   </div>
   <div class="container">
-    <div class="row">
-    <div appDoctorsSpec class="col">
-      <form  role="form" name="selectSpec" (submit)="findBySpec()">
-        <p style="text-align: center"><b>Znajdz lekarza po specjalizacji</b></p>
-        <div class="form-inline">
-          <div class="form-group col-md-6">
-            <select [(ngModel)]="doctorSpec" [ngModelOptions]="{standalone: true}" class="custom-select custom-select-lg">
-              <option value="" selected></option>
-              <option value="dentysta">Dentysta</option>
-              <option value="pediatra">Pediatra</option>
-            </select>
-          </div>
-            <div class="form-group col-md-6">
-              <button class="btn btn-primary btn-block">Szukaj</button>
-          </div>
-        </div>
-      </form>
-      <div *ngIf="doctors.length > 0">
-        <ul *ngFor="let doctor of doctors">
-          <li>{{doctor.lastName}}<button style="margin: 5px" type="button" class="btn btn-primary" (click)="showDoctor(doctor)">Pokaz</button></li>
-        </ul>
-      </div>
-    </div>
-      <div appDoctorsSpec class="col">
-        <p style="text-align: center"><b>Najblizsze wizyty</b></p>
-        <button class="btn btn-primary btn-block">Szukaj</button>
-      </div>
-    </div>
-    <button class="btn btn-primary" (click)="getToken()">Token</button>
-    <p><b>Session storage: {{storage}}</b></p>
+    <!--<div class="row">-->
+    <!--<div appDoctorsSpec class="col">-->
+      <!--<form  role="form" name="selectSpec" (submit)="findBySpec()">-->
+        <!--<p style="text-align: center"><b>Znajdz lekarza po specjalizacji</b></p>-->
+        <!--<div class="form-inline">-->
+          <!--<div class="form-group col-md-6">-->
+            <!--<select [(ngModel)]="doctorSpec" [ngModelOptions]="{standalone: true}" class="custom-select custom-select-lg">-->
+              <!--<option value="" selected></option>-->
+              <!--<option value="dentysta">Dentysta</option>-->
+              <!--<option value="pediatra">Pediatra</option>-->
+            <!--</select>-->
+          <!--</div>-->
+            <!--<div class="form-group col-md-6">-->
+              <!--<button class="btn btn-primary btn-block">Szukaj</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</form>-->
+      <!--<div *ngIf="doctors.length > 0">-->
+        <!--<ul *ngFor="let doctor of doctors">-->
+          <!--<li>{{doctor.lastName}}<button style="margin: 5px" type="button" class="btn btn-primary" (click)="showDoctor(doctor)">Pokaz</button></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+      <!--<div appDoctorsSpec class="col">-->
+        <!--<p style="text-align: center"><b>Najblizsze wizyty</b></p>-->
+        <!--<button class="btn btn-primary btn-block">Szukaj</button>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<button class="btn btn-primary" (click)="getToken()">Token</button>-->
+    <p><b>Session storage: {{info.token}}</b></p>
+    <p>FName: {{info.fName}}</p>
+    <p>Date: {{info.birthDate}}</p>
+    <button type="button" (click)="logout()">Wyloguj</button>
+    <!--<button type="button" (click)="get()">Get</button>-->
   </div>
 </div>
 

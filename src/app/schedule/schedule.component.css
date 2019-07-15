@@ -1,0 +1,22 @@
+table.table{
+  /*display: inline-block;*/
+  float: left;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+td{
+  background-color: forestgreen;
+  text-align: center;
+  font-weight: bold;
+
+}
+tr{
+  /*border: 2px solid black;*/
+}
+td:hover{
+  background-color: greenyellow;
+  cursor: pointer;
+}
+button{
+  margin: 5px;
+}

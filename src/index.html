@@ -9,16 +9,16 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body style="background-color: snow" onLoad="changeDate()">
+<body>
   <app-root></app-root>
-  <script type="text/javascript">
-    function changeDate(){
-      document.getElementById('today').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-    }
-    function chooseDate(){
-      document.getElementById('today').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-    }
-  </script>
+  <!--<script type="text/javascript">-->
+    <!--function changeDate(){-->
+      <!--document.getElementById('today').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];-->
+    <!--}-->
+    <!--function chooseDate(){-->
+      <!--document.getElementById('today').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];-->
+    <!--}-->
+  <!--</script>-->
 
 </body>
 </html>

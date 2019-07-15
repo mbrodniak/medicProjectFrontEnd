@@ -4,11 +4,8 @@ import {Patient} from './patient';
 
 export class Appointment {
 
-  appointmentId: number;
+  id: number;
   date: Date;
-  doctor: Doctor;
-  patientId: number;
-  doctorId: string;
-  patient: Patient;
+  doctor: Array<any>;
 
 }

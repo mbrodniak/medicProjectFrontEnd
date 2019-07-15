@@ -1,9 +1,26 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter, DoCheck} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter,
+  DoCheck,
+  ViewChild,
+  ElementRef,
+  Inject, Renderer2, ViewChildren, QueryList
+} from '@angular/core';
 import {HttpService} from '../service/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {Appointment} from '../model/appointment';
 import {DoctorDetailComponent} from '../doctor-detail/doctor-detail.component';
 import {Doctor} from '../model/doctor';
+import {TokenStorageService} from '../token-storage.service';
+import {ScheduleResponse} from '../model/scheduleResponse';
+import {DOCUMENT} from '@angular/common';
+import {element} from 'protractor';
+import {async, delay} from 'q';
 
 @Component({
   selector: 'app-schedule',
@@ -11,71 +28,51 @@ import {Doctor} from '../model/doctor';
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit, OnChanges, DoCheck {
-  doctor: Doctor;
-  days: Array<string> = new Array<string>();
-  @Input() appointment: Array<Appointment>;
-  day: string;
-  date: Date = new Date();
-  hours: Array<string> = new Array<string>();
-  id: string;
-  workingHours = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
-    '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'];
-  constructor(private httpService: HttpService, private route: ActivatedRoute,
-              private app: Appointment, private doctorDetail: DoctorDetailComponent) { }
 
-  ngOnInit() {
-    console.log('NgOnInit Schedule <-----HERE----->');
-    this.appointment.filter(data => this.doctor = data.doctor);
-    // this.getDayName();
-    this.day = new Date().toString();
+  username: string;
+  form: any = {};
+  workingHours = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00',
+    '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'];
+  // response: ScheduleResponse;
+  days: Array<number>;
+  year: number;
+  month: number;
+  appointmentHours: Array<string>;
+  @Input()doctorId: string;
+  constructor(private tokenStorage: TokenStorageService, private httpService: HttpService, private renderer: Renderer2) {
+    this.appointmentHours = [];
+  }
+  @ViewChildren('hour') hour: QueryList<ElementRef>;
+
+  ngDoCheck(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('NgOnChanges Schedule <-----HERE----->');
-    console.log(this.days.length);
-    if (this.days.length > 0 ) {
-      this.days = [];
-    }
-    this.appointment.filter(data => this.days.push(data.date.toString()));
-    this.getDayName();
-    this.getHours();
-  }
-  ngDoCheck(): void {
-    console.log('<-----NGDOCHECK SCHEDULE----->');
+    console.log('OnChanges');
   }
 
-  getDayName() {
-    for (const d of this.days) {
-      // this.day = null;
-      if (this.day !== d) {
-          this.day = d;
-        }
-      console.log(this.day);
+  ngOnInit(): void {
+    this.username = this.tokenStorage.getUsername();
+    console.log('OnInit');
+  }
+  getWeek() {
+    this.httpService.getAppointments(this.form.date.toString(), this.doctorId).subscribe(data => {
+      this.appointmentHours = data;
+    }, error1 => {
+      console.log(error1);
+    },
+      () => this.changeColor());
+  }
+  changeColor() {
+    const innerTexts = [];
+    this.hour.forEach(el => innerTexts.push( el.nativeElement));
+    for (const td of innerTexts) {
+      if (this.appointmentHours.includes(td.innerText)) {
+        this.renderer.setStyle(td, 'background-color', 'red');
+      }
     }
   }
-  getHours() {
-    if (this.hours.length > 0) {
-      this.hours = [];
-    }
-    for (const hour of this.days) {
-      const h = hour.split('T')[1].split(':');
-      const temp = h[0] + ':' + h[1];
-      this.hours.push((temp));
-    }
+  log(hour: string) {
+    console.log('Clicked hour: ' + hour);
   }
-  makeAnAppointment(hour: string) {
-    if (this.date === undefined) {
-      this.date = new Date(this.day);
-    }
-    this.date = new Date(this.date);
-    // this.httpService.currentMessage.subscribe(data => this.id = data);
-    this.doctorDetail.makeAnAppointment(this.date, hour, 13);
-  }
-  changeDate() {
-    console.log('ta data: ' + this.date);
-    this.doctorDetail.changeDate(this.date);
-  }
-
-
-
 }

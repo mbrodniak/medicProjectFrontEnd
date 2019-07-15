@@ -1,32 +1,24 @@
 <app-main-navbar></app-main-navbar>
 <div class="container">
   <div class="row">
-    <div class="col-1">
-      <p class="image"><img src="assets/img/avatar.png" width="120" height="120" align="middle"></p>
+    <div class="col-lg-3">
+      <div class="image">
+        <img src="assets/images/avatar.png" width="130" height="130">
+      </div>
+      <div class="info">
+        <p><b><i>{{doctor?.specialization}}</i></b></p>
+        <p>{{doctor?.firstName}} {{doctor?.lastName}}</p>
+      </div>
     </div>
-    <div class="col-1" >
-    <table class="table" align="middle">
-      <thead>
-      <tr>
-        <th>Imie</th>
-        <td>{{doctor.firstName.toString()}}</td>
-      </tr>
-      <tr>
-        <th>Nazwisko</th>
-        <td>{{doctor.lastName}}</td>
-      </tr>
-      <tr>
-        <th>Specjalizacja</th>
-        <td>{{doctor.specialisation}}</td>
-      </tr>
-      </thead>
-    </table>
+    <div class="col-lg-6">
+      <app-schedule [doctorId]="id" ></app-schedule>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
   </div>
-  </div>
-<app-schedule [appointment]="appointment"></app-schedule>
+
+
+
 </div>
-  <script type="text/javascript">
-    function chooseDate(){
-      document.getElementById('date').valueAsDate = new Date();
-    }
-  </script>
+

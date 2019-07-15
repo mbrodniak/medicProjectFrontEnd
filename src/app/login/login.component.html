@@ -10,13 +10,13 @@
     <hr>
     <p><b style="color: red">{{message}}</b></p>
   </div>
-  <form role="form" (submit)="login()">
+  <form name="form" (submit)="login()">
   <div class="row">
-    <div class="col">E-mail
-      <input class="form-control" type="text" [(ngModel)]="credentials.email" [ngModelOptions]="{standalone: true}">
+    <div class="col">Login
+      <input class="form-control" type="text" name="username" [(ngModel)]="form.username">
     </div>
     <div class="col">Haslo
-      <input class="form-control" type="password" [(ngModel)]="credentials.password" [ngModelOptions]="{standalone: true}">
+      <input class="form-control" type="password" name="password" [(ngModel)]="form.password">
     </div>
   </div>
   <div class="row">

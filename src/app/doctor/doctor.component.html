@@ -1,26 +1,28 @@
 <app-main-navbar></app-main-navbar>
 <body>
   <div class="container">
-    <table class="table">
-      <thead class="thead-dark">
-      <tr>
-        <!--<th>Nr</th>-->
-        <th>Imie</th>
-        <th>Nazwisko</th>
-        <th>Specjalizacja</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody *ngFor="let doctor of doctorList">
+    <div *ngIf="doctorList">
+      <table class="table">
+        <thead class="thead-dark">
         <tr>
-          <!--<th>{{doctor.doctorId}}</th>-->
-          <th>{{doctor.firstName}}</th>
-          <th>{{doctor.lastName}}</th>
-          <th>{{doctor.specialisation}}</th>
-          <th><button class="btn btn-info btn-sm" (click)="showDoctor(doctor)">Pokaz</button></th>
+          <th>ID</th>
+          <th>Imie</th>
+          <th>Nazwisko</th>
+          <th>Specjalizacja</th>
+          <th></th>
         </tr>
-      </tbody>
-    </table>
-  <p>User: {{user.username}}</p>
+        </thead>
+        <tbody *ngFor="let doctor of doctorList">
+          <tr>
+            <th>{{doctor.id}}</th>
+            <th>{{doctor.firstName}}</th>
+            <th>{{doctor.lastName}}</th>
+            <th>{{doctor.specialization}}</th>
+            <th><button class="btn btn-info btn-sm" (click)="showDoctor(doctor)">Pokaz</button></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--<button class="button" (click)="getDoctors()"></button>-->
   </div>
 </body>

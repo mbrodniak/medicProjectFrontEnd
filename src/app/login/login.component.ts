@@ -7,6 +7,10 @@ import {AuthenticationService} from '../service/authentication.service';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
 import {callNgModuleLifecycle} from '@angular/core/src/view/ng_module';
+import {AuthLoginInfo} from '../model/authLoginInfo';
+import {TokenStorageService} from '../token-storage.service';
+import * as moment from 'moment';
+import _date = moment.unitOfTime._date;
 
 @Component({
   selector: 'app-login',
@@ -15,35 +19,43 @@ import {callNgModuleLifecycle} from '@angular/core/src/view/ng_module';
 })
 export class LoginComponent implements OnInit {
 
-  userId: Array<string> = [];
-  credentials = {email: '', password: ''};
-  message: string;
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  roles = [];
+  private authLogin: AuthLoginInfo
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private httpClient: HttpClient,
-              private service: HttpService) {}
+              private authService: AuthenticationService,
+              private tokenStorage: TokenStorageService) {}
 
   ngOnInit() {
+
   }
 
   login() {
-    this.service.login(this.credentials.email, this.credentials.password).subscribe(data => {
-      if (data['role'] === 'doctor') {
-        this.service.changeDoctorCredentials(data.id);
-        this.router.navigate(['doctorPage']);
-      } else if (data['role'] === 'employer') {
-        this.router.navigate(['employerPage']);
-      } else {
-        // this.service.changeMessage(data);
-        this.service.currentMessage.subscribe(message => this.userId.push(message.id.toString()));
-        console.log('This userID in logincmponent after subscribe: ' + this.userId.length);
-        this.router.navigate(['/home']);
-      }
-    },
-      error1 => this.message = 'Twoje konto nie zostało jeszcze aktywowane.');
-  }
-  navigateToEmployerLoginPage() {
-    this.router.navigate(['employerLogin']);
-  }
 
+    this.authLogin = new AuthLoginInfo(
+      btoa(this.form.username), btoa(this.form.password)
+    );
+    this.authService.login(this.authLogin).subscribe(data => {
+
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUsername(data.username);
+        this.tokenStorage.saveAuthorities(data.authorities);
+        this.tokenStorage.saveUserId(data.id);
+        this.tokenStorage.saveUserEmail(data.email);
+        this.tokenStorage.saveUserFName(data.firstName);
+        this.tokenStorage.saveUserLName(data.lastName);
+        // this.tokenStorage.saveUserBirtDate(data.data);
+        this.isLoggedIn = true;
+        this.isLoginFailed = false;
+        this.router.navigate(['home']);
+    }
+
+    );
+
+  }
 }
